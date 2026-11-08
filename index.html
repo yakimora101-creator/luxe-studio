@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="LUXE Studio crea experiencias digitales minimalistas, elegantes y funcionales.">
+  <title>LUXE Studio — Diseño digital con intención</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0c;
+      --surface: #111115;
+      --text: #f5f4f8;
+      --muted: #aaa7b3;
+      --accent: #a78bfa;
+      --line: rgba(255,255,255,.12);
+      --gradient: linear-gradient(120deg, #c4b5fd, #818cf8 55%, #e879f9);
+      --width: 1120px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+    .wrap { width: min(var(--width), 90%); margin-inline: auto; }
+    .ambient {
+      position: fixed; z-index: -1; pointer-events: none; inset: -20% auto auto 15%;
+      width: 70vw; height: 70vw; max-width: 850px; max-height: 850px;
+      background: radial-gradient(circle, rgba(129,140,248,.13), transparent 68%);
+    }
+    header {
+      position: sticky; top: 0; z-index: 5;
+      background: rgba(10,10,12,.82); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { text-decoration: none; font-size: 1.2rem; font-weight: 800; letter-spacing: .16em; }
+    .logo span { color: var(--accent); }
+    nav { display: flex; align-items: center; gap: clamp(16px, 3vw, 36px); }
+    nav a { color: var(--muted); text-decoration: none; font-size: .9rem; transition: color .2s; }
+    nav a:hover { color: var(--text); }
+    .nav-cta { padding: 9px 16px; border: 1px solid var(--line); border-radius: 999px; }
+    .hero { min-height: 590px; display: grid; align-content: center; padding-block: 100px 90px; }
+    .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .2em; font-size: .76rem; font-weight: 700; }
+    h1 { max-width: 850px; margin: 20px 0; font-size: clamp(3rem, 8vw, 6.7rem); line-height: .99; letter-spacing: -.075em; }
+    .gradient { color: transparent; background: var(--gradient); background-clip: text; -webkit-background-clip: text; }
+    .hero-copy { max-width: 590px; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.2rem); }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border-radius: 999px; text-decoration: none; font-weight: 700; transition: transform .2s, border-color .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--gradient); color: #111018; }
+    .button-secondary { border: 1px solid var(--line); }
+    section { padding-block: 76px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+    h2 { margin: 8px 0 0; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; letter-spacing: -.05em; }
+    .section-heading p { max-width: 410px; margin: 0; color: var(--muted); }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { min-height: 230px; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(255,255,255,.015)); transition: transform .25s, border-color .25s; }
+    .card:hover { transform: translateY(-5px); border-color: rgba(196,181,253,.45); }
+    .card-number { color: var(--accent); font-size: .78rem; letter-spacing: .12em; }
+    h3 { margin: 28px 0 8px; font-size: 1.3rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .96rem; }
+    .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; align-items: start; border-top: 1px solid var(--line); }
+    .about-copy { color: var(--muted); font-size: 1.1rem; }
+    .about-copy strong { color: var(--text); }
+    .contact { padding: clamp(32px, 7vw, 76px); border: 1px solid var(--line); border-radius: 24px; background: radial-gradient(ellipse at top right, rgba(129,140,248,.15), transparent 55%), var(--surface); }
+    .contact p { max-width: 580px; color: var(--muted); }
+    footer { margin-top: 80px; padding: 26px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; }
+    @media (max-width: 720px) {
+      .nav { min-height: 68px; }
+      nav { gap: 14px; }
+      nav a { font-size: .82rem; }
+      nav .nav-cta { display: none; }
+      .hero { min-height: auto; padding-block: 100px 65px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: 190px; }
+      .section-heading, .about { display: block; }
+      .section-heading p { margin-top: 16px; }
+      .about-copy { margin-top: 22px; }
+      section { padding-block: 55px; }
+    }
+    @media (max-width: 420px) { nav { gap: 10px; } nav a { font-size: .75rem; } .logo { font-size: 1rem; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#inicio" aria-label="LUXE Studio, inicio">LUXE<span>.</span></a>
+      <nav aria-label="Navegación principal">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#servicios">Servicios</a>
+        <a class="nav-cta" href="#contacto">Hablemos <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap hero" id="inicio">
+      <span class="eyebrow">Estudio creativo independiente</span>
+      <h1>Diseño que <span class="gradient">trasciende.</span></h1>
+      <p class="hero-copy">Creamos experiencias digitales con carácter: estética cuidada, ideas claras y funcionalidad que se siente natural.</p>
+      <div class="actions">
+        <a class="button button-primary" href="#proyectos">Explorar el estudio <span aria-hidden="true">&nbsp;↘</span></a>
+        <a class="button button-secondary" href="#servicios">Qué hacemos</a>
+      </div>
+    </section>
+
+    <section class="wrap" id="proyectos">
+      <div class="section-heading">
+        <div><span class="eyebrow">Nuestra forma de trabajar</span><h2>Menos ruido.<br>Más intención.</h2></div>
+        <p>Diseñamos cada detalle para que la belleza y la facilidad de uso trabajen juntas.</p>
+      </div>
+      <div class="cards" id="servicios">
+        <article class="card"><span class="card-number">01 / DISEÑO</span><h3>Minimalismo</h3><p>Eliminamos lo innecesario para que tu mensaje y tu marca ocupen el lugar que merecen.</p></article>
+        <article class="card"><span class="card-number">02 / DESARROLLO</span><h3>Velocidad</h3><p>Experiencias ligeras y adaptables, pensadas para funcionar bien en cualquier pantalla.</p></article>
+        <article class="card"><span class="card-number">03 / EXPERIENCIA</span><h3>Detalles con intención</h3><p>Tipografía, color e interacción se unen para crear una experiencia coherente y memorable.</p></article>
+      </div>
+    </section>
+
+    <section class="wrap about">
+      <div><span class="eyebrow">La esencia LUXE</span><h2>Lo simple<br>también impacta.</h2></div>
+      <p class="about-copy"><strong>Creemos en el diseño que se siente antes de explicarse.</strong> Por eso combinamos una estética contemporánea con decisiones prácticas: claridad en cada mensaje, navegación intuitiva y una experiencia que pone a las personas primero.</p>
+    </section>
+
+    <section class="wrap" id="contacto">
+      <div class="contact">
+        <span class="eyebrow">Tu próxima idea empieza aquí</span>
+        <h2>Hagamos algo<br><span class="gradient">extraordinario.</span></h2>
+        <p>¿Tienes un proyecto en mente? Escríbenos y cuéntanos qué te gustaría crear.</p>
+        <a class="button button-primary" href="mailto:hola@luxestudio.com">Contactar <span aria-hidden="true">&nbsp;↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner"><span>© 2026 LUXE Studio. Todos los derechos reservados.</span><a href="#inicio">Volver arriba ↑</a></div>
+  </footer>
+</body>
+</html>
